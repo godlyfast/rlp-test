@@ -9,7 +9,7 @@ export default {
     return new Promise(res => res(player));
   },
   async fetchAll() {
-    data = await (await fetch("/players.json")).json();
+    data = await (await fetch("players.json")).json();
     return data;
   },
   delete(id) {

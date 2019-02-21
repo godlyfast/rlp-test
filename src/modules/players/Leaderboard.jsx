@@ -57,7 +57,7 @@ class Leaderboard extends Component {
     this.props.dispatch({ type: "FETCH_PLAYERS_REQUEST" });
   };
   handleOpen = () => {
-    this.setState({ open: true, formAction: "create" });
+    this.setState({ open: true, formAction: "create", editPlayer: null });
   };
   handleClose = () => {
     this.setState({ open: false, formAction: null });
