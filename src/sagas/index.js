@@ -38,11 +38,11 @@ function* editPlayer(action) {
   }
 }
 
-function* fetchPlayersSaga() {
+function* rootSaga() {
   yield takeLatest("FETCH_PLAYERS_REQUEST", fetchPlayers);
   yield takeLatest("CREATE_PLAYER_REQUEST", createPlayer);
   yield takeLatest("DELETE_PLAYER_REQUEST", deletePlayer);
   yield takeLatest("EDIT_PLAYER_REQUEST", editPlayer);
 }
 
-export default fetchPlayersSaga;
+export default rootSaga;
