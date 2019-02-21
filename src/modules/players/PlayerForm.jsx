@@ -29,6 +29,10 @@ class PlayerForm extends Component {
     });
   };
 
+  isValid = () => {
+    return !this.state.newPlayer.firstName || !this.state.newPlayer.lastName;
+  };
+
   handleScoreChange = (event, value) => {
     this.setState({
       ...this.state,
@@ -69,6 +73,7 @@ class PlayerForm extends Component {
           id="first-name"
           label="First Name"
           fullWidth
+          required={true}
           value={this.state.newPlayer.firstName}
           onChange={this.handleInputChange("firstName")}
           margin="normal"
@@ -77,6 +82,7 @@ class PlayerForm extends Component {
           id="last-name"
           label="Last Name"
           fullWidth
+          required={true}
           margin="normal"
           value={this.state.newPlayer.lastName}
           onChange={this.handleInputChange("lastName")}
@@ -99,6 +105,7 @@ class PlayerForm extends Component {
           variant="contained"
           color="primary"
           fullWidth
+          disabled={this.isValid()}
           onClick={this.handleAction}
         >
           OK
