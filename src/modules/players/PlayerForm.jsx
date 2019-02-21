@@ -35,18 +35,13 @@ class PlayerForm extends Component {
       newPlayer: { ...this.state.newPlayer, score: value }
     });
   };
-  handleLastNameChange = event => {
+  handleInputChange = inputName => event => {
     this.setState({
       ...this.state,
-      newPlayer: { ...this.state.newPlayer, lastName: event.target.value }
+      newPlayer: { ...this.state.newPlayer, [inputName]: event.target.value }
     });
   };
-  handleFirstNameChange = event => {
-    this.setState({
-      ...this.state,
-      newPlayer: { ...this.state.newPlayer, firstName: event.target.value }
-    });
-  };
+
   render() {
     const { classes, dispatch, action } = this.props;
 
@@ -57,7 +52,7 @@ class PlayerForm extends Component {
           label="First Name"
           fullWidth
           value={this.state.newPlayer.firstName}
-          onChange={this.handleFirstNameChange}
+          onChange={this.handleInputChange("firstName")}
           margin="normal"
         />
         <TextField
@@ -66,7 +61,7 @@ class PlayerForm extends Component {
           fullWidth
           margin="normal"
           value={this.state.newPlayer.lastName}
-          onChange={this.handleLastNameChange}
+          onChange={this.handleInputChange("lastName")}
         />
         <div className={classes.sliderContainer}>
           <Typography id="label">
