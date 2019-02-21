@@ -65,7 +65,8 @@ class Leaderboard extends Component {
 
   sortedData = () => {
     return [...this.props.players].sort((a, b) => {
-      if (a.score === b.score) return a.lastName > b.lastName ? 1 : -1;
+      if (a.score === b.score)
+        return a.lastName.toLowerCase() > b.lastName.toLowerCase() ? 1 : -1;
       if (a.score < b.score) return 1;
       else return -1;
     });
