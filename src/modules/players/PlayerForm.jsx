@@ -41,9 +41,27 @@ class PlayerForm extends Component {
       newPlayer: { ...this.state.newPlayer, [inputName]: event.target.value }
     });
   };
+  handleAction = () => {
+    switch (this.props.action) {
+      case "create":
+        this.props.dispatch({
+          type: "CREATE_PLAYER_REQUEST",
+          player: this.state.newPlayer
+        });
+        break;
+      case "edit":
+        this.props.dispatch({
+          type: "EDIT_PLAYER_REQUEST",
+          player: this.state.newPlayer
+        });
+        break;
+      default:
+        throw new Error(`Invalid action ${this.props.action}`);
+    }
+  };
 
   render() {
-    const { classes, dispatch, action } = this.props;
+    const { classes } = this.props;
 
     return (
       <form noValidate autoComplete="off">
@@ -81,15 +99,7 @@ class PlayerForm extends Component {
           variant="contained"
           color="primary"
           fullWidth
-          onClick={() =>
-            dispatch({
-              type:
-                action === "create"
-                  ? "CREATE_PLAYER_REQUEST"
-                  : "EDIT_PLAYER_REQUEST",
-              player: this.state.newPlayer
-            })
-          }
+          onClick={this.handleAction}
         >
           OK
         </Button>
