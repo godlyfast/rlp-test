@@ -117,7 +117,7 @@ class Leaderboard extends Component {
             {this.sortedData().map(row => (
               <TableRow key={row.id}>
                 <TableCell component="th" scope="row">
-                  {row.firstName} {row.lastName}
+                  {row.lastName}, {row.firstName}
                 </TableCell>
                 <TableCell align="right">{row.score}</TableCell>
                 <TableCell align="right">
