@@ -52,7 +52,7 @@ function getModalStyle() {
   };
 }
 class Leaderboard extends Component {
-  state = { open: false, editPlayer: null, formAction: null };
+  state = { open: false, editPlayer: null, formAction: "create" };
   componentDidMount = () => {
     this.props.dispatch({ type: "FETCH_PLAYERS_REQUEST" });
   };
@@ -60,7 +60,7 @@ class Leaderboard extends Component {
     this.setState({ open: true, formAction: "create", editPlayer: null });
   };
   handleClose = () => {
-    this.setState({ open: false, formAction: null });
+    this.setState({ open: false, formAction: "create" });
   };
 
   sortedData = () => {
@@ -70,6 +70,17 @@ class Leaderboard extends Component {
       if (a.score < b.score) return 1;
       else return -1;
     });
+  };
+
+  getTitle = () => {
+    switch (this.state.formAction) {
+      case "create":
+        return "Create new Player";
+      case "edit":
+        return "Edit Player";
+      default:
+        throw new Error(`Invalid form action ${this.state.formAction}`);
+    }
   };
 
   render() {
@@ -84,7 +95,7 @@ class Leaderboard extends Component {
         >
           <div style={getModalStyle()} className={classes.modal}>
             <Typography variant="h6" id="modal-title">
-              New Player
+              {this.getTitle()}
             </Typography>
             <PlayerForm
               player={this.state.editPlayer}
